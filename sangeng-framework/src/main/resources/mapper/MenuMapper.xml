@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xha.mapper.MenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.xha.domain.entity.Menu">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+        <result property="orderNum" column="order_num" jdbcType="INTEGER"/>
+        <result property="path" column="path" jdbcType="VARCHAR"/>
+        <result property="component" column="component" jdbcType="VARCHAR"/>
+        <result property="isFrame" column="is_frame" jdbcType="INTEGER"/>
+        <result property="menuType" column="menu_type" jdbcType="CHAR"/>
+        <result property="visible" column="visible" jdbcType="CHAR"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="perms" column="perms" jdbcType="VARCHAR"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="BIGINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="BIGINT"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="del_flag" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,menu_name,parent_id,
+        order_num,path,component,
+        is_frame,menu_type,visible,
+        status,perms,icon,
+        create_by,create_time,update_by,
+        update_time,remark,del_flag
+    </sql>
+
+    <!--    根据用户id获取到用户对应的权限信息-->
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+        SELECT DISTINCT sys_menu.perms
+        FROM sys_user_role
+                 LEFT JOIN sys_role_menu ON sys_user_role.role_id = sys_role_menu.role_id
+                 LEFT JOIN sys_menu ON sys_menu.id = sys_role_menu.menu_id
+        WHERE sys_user_role.user_id = #{userId}
+          AND sys_menu.menu_type IN ('C', 'F')
+          AND sys_menu.`status` = 0
+          AND sys_menu.del_flag = 0
+    </select>
+
+    <!--    查询所有对应的menu信息-->
+    <select id="selectAllRouterMenu" resultType="com.xha.domain.entity.Menu">
+        SELECT DISTINCT sys_menu.id,
+                        sys_menu.parent_id,
+                        sys_menu.menu_name,
+                        sys_menu.path,
+                        sys_menu.component,
+                        sys_menu.visible,
+                        sys_menu.`status`,
+                        IFNULL(sys_menu.perms, '') AS perms,
+                        sys_menu.is_frame,
+                        sys_menu.menu_type,
+                        sys_menu.icon,
+                        sys_menu.order_num,
+                        sys_menu.create_time
+        FROM sys_menu
+        WHERE sys_menu.menu_type IN ('M', 'C')
+          AND sys_menu.`status` = 0
+          AND sys_menu.del_flag = 0
+        ORDER BY sys_menu.parent_id, sys_menu.order_num
+    </select>
+
+    <!--    根据用户id查询对应的menu信息-->
+    <select id="selectRouterMenuByUserId" resultType="com.xha.domain.entity.Menu">
+        SELECT DISTINCT sys_menu.id,
+                        sys_menu.parent_id,
+                        sys_menu.menu_name,
+                        sys_menu.path,
+                        sys_menu.component,
+                        sys_menu.visible,
+                        sys_menu.`status`,
+                        IFNULL(sys_menu.perms, '') AS perms,
+                        sys_menu.is_frame,
+                        sys_menu.menu_type,
+                        sys_menu.icon,
+                        sys_menu.order_num,
+                        sys_menu.create_time
+        FROM sys_user_role
+                 LEFT JOIN sys_role_menu ON sys_user_role.role_id = sys_role_menu.role_id
+                 LEFT JOIN sys_menu ON sys_menu.id = sys_role_menu.menu_id
+        WHERE sys_user_role.user_id = #{userId}
+          AND sys_menu.menu_type IN ('M', 'C')
+          AND sys_menu.`status` = 0
+          AND sys_menu.del_flag = 0
+        ORDER BY sys_menu.parent_id, sys_menu.order_num
+    </select>
+    <select id="selectMenuListByRoleId" resultType="java.lang.Long">
+        select m.id
+        from sys_menu m
+                 left join sys_role_menu rm on m.id = rm.menu_id
+        where rm.role_id = #{roleId}
+    </select>
+</mapper>
