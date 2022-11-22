@@ -34,6 +34,6 @@ mybatis-plus:
 oss:
   #  配置地域节点Endpoint
   endpoint: oss-cn-shanghai.aliyuncs.com
-  accessKeyId: LTAI5tMp71VYRJkBCsDL9vX7
-  accessKeySecret: TWrV2ypCXCVg8ckUu32r9VClqRKMGv
-  bucketName: imagebed-xuhuaiang
+  accessKeyId: *******************
+  accessKeySecret: *******************
+  bucketName: **************
