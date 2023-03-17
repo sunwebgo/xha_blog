@@ -98,6 +98,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 //        4.获取到用户id
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
         String userId = loginUser.getUser().getId().toString();
+//          4.1生成JWT
         String jwt = JwtUtils.createJWT(userId);
 
 //        5.将用户信息存入缓存
