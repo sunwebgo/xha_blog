@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/logout").authenticated()
                 .antMatchers("/comment/addComment").authenticated()
                 .antMatchers("/user/userInfo").authenticated()
-                .antMatchers("/upload").authenticated()
+                // .antMatchers("/upload").authenticated()
                 // 除上面外的所有请求都不需要认证
                 .anyRequest().permitAll();
 
