@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HotArticleVo {
-    private int id;
+    private Long id;
     private String title;
     private Long viewCount;
 }
