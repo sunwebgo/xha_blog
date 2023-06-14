@@ -1,7 +1,7 @@
 本人博客网站,欢迎访问！：http://xhablog.online
 
 ### sangeng blog后端
-
+![img.png](/resource/website.png)
 ### 技术栈
 * SpringBoot
 * MybatisPlus
