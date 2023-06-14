@@ -1,4 +1,4 @@
-本人博客网站：http://xhablog.onlie,欢迎访问！
+本人博客网站,欢迎访问！：http://xhablog.onlie
 
 ### sangeng blog后端
 
