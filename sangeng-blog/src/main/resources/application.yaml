@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://***********:3306/sg_blog?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/sg_blog?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: ***********
+    password: xu.123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   #    文件上传
   servlet:
@@ -21,9 +21,9 @@ spring:
 
   # 配置redis
   redis:
-    host: ***********
+    host: 175.178.216.62
     port: 6379
-    password: xu.123456
+    password: Csy123456.
     lettuce:
       pool:
         max-active: 8   #最大连接数
@@ -46,7 +46,7 @@ mybatis-plus:
 # 阿里云OSS对象存储
 oss:
   #  配置地域节点Endpoint
-  endpoint: ***********************
-  accessKeyId: ***********************
-  accessKeySecret: ***********************
-  bucketName: ***********************
+  endpoint: 1
+  accessKeyId: 1
+  accessKeySecret: 1
+  bucketName: 1
