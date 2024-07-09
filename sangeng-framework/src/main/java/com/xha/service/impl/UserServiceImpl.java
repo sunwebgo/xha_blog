@@ -15,6 +15,7 @@ import com.xha.utils.BeanCopyPropertiesUtils;
 import com.xha.utils.JwtUtils;
 import com.xha.utils.RedisCache;
 import com.xha.utils.SecurityUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -117,6 +118,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      *
      * @return
      */
+    @Override
     public ResponseResult userLogout() {
 //        1.获取到SecurityContextHolder中的LoginUser对象
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

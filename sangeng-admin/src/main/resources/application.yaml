@@ -22,7 +22,6 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    password: xu.123456
     lettuce:
       pool:
         max-active: 8   #最大连接数
@@ -43,10 +42,10 @@ mybatis-plus:
       id-type: auto
 
 
-# 阿里云OSS对象存储
-oss:
-  #  配置地域节点Endpoint
-  endpoint: ***************************
-  accessKeyId: ***************************
-  accessKeySecret: ***************************
-  bucketName: ***************************
+## 阿里云OSS对象存储
+#oss:
+#  #  配置地域节点Endpoint
+#  endpoint: ***************************
+#  accessKeyId: ***************************
+#  accessKeySecret: ***************************
+#  bucketName: ***************************
